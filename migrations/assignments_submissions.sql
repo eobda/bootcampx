@@ -6,3 +6,11 @@ CREATE TABLE assignment (
   chapter INTEGER,
   duration TIME
 );
+
+CREATE TABLE assignment_submissions (
+  id SERIAL PRIMARY KEY NOT NULL,
+  assignment_id INTEGER REFERENCES assignment(id) ON DELETE CASCADE,
+  student_id INTEGER REFERENCES students(id) ON DELETE CASCADE,
+  duration TIME,
+  submission_date DATE
+);
