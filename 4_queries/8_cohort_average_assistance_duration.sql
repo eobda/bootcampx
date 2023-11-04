@@ -1,4 +1,4 @@
-SELECT AVG(total_duration)
+SELECT AVG(total_duration) AS average_total_duration
 FROM (
   SELECT SUM(completed_at - started_at) AS total_duration
   FROM assistance_requests
@@ -6,4 +6,4 @@ FROM (
   JOIN cohorts ON cohorts.id = cohort_id
   GROUP BY cohorts.name
 )
-AS average_total_duration;
+AS total_duration;
