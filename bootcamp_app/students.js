@@ -8,8 +8,9 @@ const pool = new Pool({
 });
 
 pool.query(`
-  SELECT id, name, cohort_id
+  SELECT students.id AS id, students.name AS name, cohorts.name AS cohort
   FROM students
+  JOIN cohorts ON cohorts.id = cohort_id
   LIMIT 5;
   `)
 .then(res => {
