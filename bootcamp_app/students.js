@@ -1,5 +1,7 @@
 const { Pool } = require('pg');
 
+const queryName = process.argv[2];
+
 const pool = new Pool({
   user: 'vagrant',
   password: '123',
@@ -10,6 +12,7 @@ const pool = new Pool({
 pool.query(`
   SELECT students.id AS student_id, students.name AS name, cohorts.name AS cohort
   FROM students
+  WHERE cohorts.name = ${queryName}
   JOIN cohorts ON cohorts.id = cohort_id
   LIMIT 5;
   `)
