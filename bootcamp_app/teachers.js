@@ -16,9 +16,9 @@ pool.query(`
   WHERE cohorts.name LIKE '%${process.argv[2]}%'
   ORDER BY teacher;
 `)
-.then(
+.then(res => {
   res.rows.forEach(teacher => {
     console.log(`${teacher.cohort}: ${teacher}`);
   })
-)
+})
 .catch(err => console.error('query error', err.stack));
