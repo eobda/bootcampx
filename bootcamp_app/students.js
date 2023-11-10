@@ -10,9 +10,9 @@ const pool = new Pool({
 pool.query(`
   SELECT students.id AS student_id, students.name AS name, cohorts.name AS cohort
   FROM students
-  WHERE cohorts.name = ${process.argv[2]}
   JOIN cohorts ON cohorts.id = cohort_id
-  LIMIT 5;
+  WHERE cohorts.name LIKE '%${process.argv[2]}%'
+  LIMIT ${process.argv[3] || 5};
   `)
 .then(res => {
   res.rows.forEach(user => {
